@@ -1,8 +1,8 @@
 const crypto = require('crypto');
 
 const PAYU_CONFIG = {
-    MERCHANT_KEY: process.env.PAYU_MERCHANT_KEY || 'REMOVED',
-    SALT: process.env.PAYU_SALT || 'REMOVED',
+    MERCHANT_KEY: process.env.PAYU_MERCHANT_KEY,
+    SALT: process.env.PAYU_SALT,
     BASE_URL: process.env.NODE_ENV === 'production' 
         ? 'https://secure.payu.in/_payment' 
         : 'https://test.payu.in/_payment'
