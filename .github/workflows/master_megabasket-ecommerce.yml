@@ -1,4 +1,6 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
 name: Build and deploy Node.js app to Azure Web App - megabasket-ecommerce
 
 on:
@@ -31,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: backend
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -45,14 +47,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-          path: ./backend
       
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.__clientidsecretname__ }}
-          tenant-id: ${{ secrets.__tenantidsecretname__ }}
-          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9298559743C94397A83709D36C7592BD }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B7FD8C94A2594926A4B5563BD6B00878 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6DF14AD061764AB0BB77CD5FB581AA5D }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -60,5 +61,5 @@ jobs:
         with:
           app-name: 'megabasket-ecommerce'
           slot-name: 'Production'
-          package: ./backend
+          package: .
           
